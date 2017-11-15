@@ -4,6 +4,6 @@ Projeto para a cadeira de Engenharia de Software, ministrada pelo professor Eman
 Foi usado a biblioteca Raphaël JS. Mais precisamente o projeto [Mapa SVG do Ceará](https://github.com/ronaldoarg/mapa-svg-ceara).
 
 Paulo de Tarso
-Nathan 
+Nathan Souza 
 Davi Tabosa
-Igor
+Igor Rodrigues
