@@ -1,24 +1,25 @@
-//////////////////////////////
-//
-//  MAP Functions
-//
-//////////////////////////////
-
-
 $( document ).ready(function() {
-var myData;
 
+var method = "GET";
+var data;
+var url = "http://api.tcm.ce.gov.br/sim/1_0/negociantes.json?nome_negociante=gasolina";
+
+//REQUISIÇÃO AJAX NO SERVIDOR DO TCM
   $.ajax({
-      url: "http://api.tcm.ce.gov.br/sim/1_0/municipios.json",
-      type: "GET",
-      data:  ,
+      url: url,
+      type: method,
+      data:  data,
       dataType: "json",
       crossDomain: true,
 
       headers: {
                "Accept" : "application/json; charset=utf-8",
                "Content-Type": "application/javascript; charset=utf-8",
-               "Access-Control-Allow-Origin" : "*"
+               "Access-Control-Allow-Origin" : "*",
+               "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+               "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+               "Access-Control-Allow-Credentials": true
+
     },
 
   }).done(function(resposta) {
@@ -29,71 +30,11 @@ var myData;
 
   }).always(function() {
       console.log("completou");
+
   });
-
-
-
-
-
-
-
-
-/*
-  $.get("http://api.tcm.ce.gov.br/sim/1_0/municipios.xml", function(resultado){
-    //$("#mensagem").html(resultado);
-      console.log(resultado);
-
-   })
-*/
-
-/*
-// Using the core $.ajax() method
-$.ajax({
-
-    // The URL for the request
-    url: "http://api.tcm.ce.gov.br/sim/1_0/municipios.json",
-
-    // The data to send (will be converted to a query string)
-    data: {
-        id: 123
-    },
-
-    // Whether this is a POST or GET request
-    type: "GET",
-
-    // The type of data we expect back
-    dataType : "json",
-})
-  // Code to run if the request succeeds (is done);
-  // The response is passed to the function
-  .done(function( json ) {
-     $( "<h1>" ).text( json.title ).appendTo( "body" );
-     $( "<div class=\"content\">").html( json.html ).appendTo( "body" );
-  })
-  // Code to run if the request fails; the raw request and
-  // status codes are passed to the function
-  .fail(function( xhr, status, errorThrown ) {
-    alert( "Sorry, there was a problem!" );
-    console.log( "Error: " + errorThrown );
-    console.log( "Status: " + status );
-    console.dir( xhr );
-  })
-  // Code to run regardless of success or failure;
-  .always(function( xhr, status ) {
-    alert( "The request is complete!" );
-  });
-
-
-*/
 });
 
-
-
-
-
-
-
-
+// FUNÇÃO QUE MOSTRA O NOME DE CADA MUNICÍPIO E MUDA A COR DELE
 for (var i = 0; i < cidades.length; i++) {
 
 	cidades[i].mouseover(function(e){
@@ -109,7 +50,7 @@ for (var i = 0; i < cidades.length; i++) {
 	});
 }
 
-
+//MÉTODO PARA INICIALIZAR O GRÁFICO DE LINHAS
 var tipo_grafico = "line";
 var ctx = $("#chart");
 
