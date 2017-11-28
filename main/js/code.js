@@ -1,38 +1,13 @@
 $( document ).ready(function() {
 
-var method = "GET";
-var data;
-var url = "http://api.tcm.ce.gov.br/sim/1_0/negociantes.json?nome_negociante=gasolina";
 
-//REQUISIÇÃO AJAX NO SERVIDOR DO TCM
-  $.ajax({
-      url: url,
-      type: method,
-      data:  data,
-      dataType: "json",
-      crossDomain: true,
 
-      headers: {
-               "Accept" : "application/json; charset=utf-8",
-               "Content-Type": "application/javascript; charset=utf-8",
-               "Access-Control-Allow-Origin" : "*",
-               "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-               "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-               "Access-Control-Allow-Credentials": true
 
-    },
 
-  }).done(function(resposta) {
-      console.log(resposta);
 
-  }).fail(function(jqXHR, textStatus ) {
-      console.log("Request failed: " + textStatus);
 
-  }).always(function() {
-      console.log("completou");
-
-  });
 });
+
 
 // FUNÇÃO QUE MOSTRA O NOME DE CADA MUNICÍPIO E MUDA A COR DELE
 for (var i = 0; i < cidades.length; i++) {
@@ -41,7 +16,7 @@ for (var i = 0; i < cidades.length; i++) {
   	this.node.style.opacity = 0.4;
 		var lol = document.getElementById('cidade');
 		var string = this.data('id');
-		string =string.replace(/_/g," ");
+		string = string.replace(/_/g," ");
 		lol.innerHTML = string;
   });
 
