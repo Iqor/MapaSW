@@ -1,14 +1,3 @@
-$( document ).ready(function() {
-
-
-
-
-
-
-
-});
-
-
 // FUNÇÃO QUE MOSTRA O NOME DE CADA MUNICÍPIO E MUDA A COR DELE
 for (var i = 0; i < cidades.length; i++) {
 
