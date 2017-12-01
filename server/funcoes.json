@@ -1,0 +1,36 @@
+{"rsp": {
+            "_content": [
+                 {"codigo_funcao":"01","nome_funcao":" Legislativa"},
+ {"codigo_funcao":"02","nome_funcao":" Judiciária"},
+ {"codigo_funcao":"03","nome_funcao":" Essencial à Justiça"},
+ {"codigo_funcao":"04","nome_funcao":" Administração"},
+ {"codigo_funcao":"05","nome_funcao":" Defesa Nacional"},
+ {"codigo_funcao":"06","nome_funcao":" Segurança Pública"},
+ {"codigo_funcao":"07","nome_funcao":" Relações Exteriores"},
+ {"codigo_funcao":"08","nome_funcao":" Assistência Social"},
+ {"codigo_funcao":"09","nome_funcao":" Previdência Social"},
+ {"codigo_funcao":"10","nome_funcao":" Saúde"},
+ {"codigo_funcao":"11","nome_funcao":" Trabalho"},
+ {"codigo_funcao":"12","nome_funcao":" Educação"},
+ {"codigo_funcao":"13","nome_funcao":" Cultura"},
+ {"codigo_funcao":"14","nome_funcao":" Direitos da Cidadania"},
+ {"codigo_funcao":"15","nome_funcao":" Urbanismo"},
+ {"codigo_funcao":"16","nome_funcao":" Habitação"},
+ {"codigo_funcao":"17","nome_funcao":" Saneamento"},
+ {"codigo_funcao":"18","nome_funcao":" Gestão Ambiental"},
+ {"codigo_funcao":"19","nome_funcao":" Ciência e Tecnologia"},
+ {"codigo_funcao":"20","nome_funcao":" Agricultura"},
+ {"codigo_funcao":"21","nome_funcao":" Organização Agrária"},
+ {"codigo_funcao":"22","nome_funcao":" Indústria"},
+ {"codigo_funcao":"23","nome_funcao":" Comércio e Serviços"},
+ {"codigo_funcao":"24","nome_funcao":" Comunicações"},
+ {"codigo_funcao":"25","nome_funcao":" Energia"},
+ {"codigo_funcao":"26","nome_funcao":" Transporte"},
+ {"codigo_funcao":"27","nome_funcao":" Desporto e Lazer"},
+ {"codigo_funcao":"28","nome_funcao":" Encargos Especiais"},
+ {"codigo_funcao":"40","nome_funcao":"RESTOS A PAGAR"},
+ {"codigo_funcao":"99","nome_funcao":"Reserva de Contingência"}
+            ],
+            "stat": "[ ok ]"
+        }
+}
