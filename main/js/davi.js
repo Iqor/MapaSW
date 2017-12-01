@@ -1,9 +1,15 @@
+//Funcao que retorna municipio
+/**
+ * @param {Object} atributos Os atributos para serem passados na API
+ * @param {function} callback Executado quando a operacao termina
+ */
 function getMunicipios(atributos, callback){
     var url = "/server/padder.php?metodo=municipios&nome_municipio=";
     for(var key in atributos){
 
         url += "&" + key + "=" + atributos[key];
     }
+    url = "/server/municipios.json";
     $.getJSON(url,callback);
 }
 
@@ -18,8 +24,15 @@ function getFuncao(atributos, callback){
 
         url += "&" + key + "=" + atributos[key];
     }
+    url = "/server/funcoes.json";
     $.getJSON(url,callback);
 }
+/**
+ * 
+ * @param {Object} atributos 
+ * @param {Number} ano 
+ * @param {function} callback 
+ */
 function getDespesaProjetoAtividade(atributos,ano,callback){
     var url = "/server/padder.php?metodo=despesa_projeto_atividade&exercicio_orcamento=" + ano + "00";
     for(var key in atributos){
@@ -30,6 +43,7 @@ function getDespesaProjetoAtividade(atributos,ano,callback){
 
 }
 
+
 /**
  * 
  * @param {string} searchKey O valor a ser procurado
@@ -37,38 +51,77 @@ function getDespesaProjetoAtividade(atributos,ano,callback){
  * @param {JSON} dataset A coleção de dados
  */
 function searchInArray(searchKey,collumn, dataset){
+    var normalizedKey = searchKey.toString();
+    normalizedKey = normalizedKey.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // remove diacriticos
+    normalizedKey = normalizedKey.toLowerCase();
     var result = [];
     for(var value in dataset){
-        if(dataset[value][collumn] === searchKey){
+        var normalizedValue = dataset[value][collumn];
+        normalizedValue = normalizedValue.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // remove diacriticos
+        normalizedValue = normalizedValue.toLowerCase();
+        if(normalizedValue === normalizedKey){
             result.push(dataset[value]);
         }
     }
     return result;
 }
 
-function teste2(){
-    getFuncao({},dados=>{
-        var lol;
-        lol = searchInArray(" Saúde","nome_funcao",dados.rsp._content);
-        console.log(lol);
-    })
-}
-
-function teste(){
-    getFuncao({nome_funcao: "edu"},dados =>{
-        console.log(dados);
-        var cod_edu  = dados.rsp._content[0].codigo_funcao;
-        getMunicipios({nome_municipio:"fortaleza"},dados=>{
-            console.log(dados);
-            var cod_fortaleza = dados.rsp._content[0].codigo_municipio;
-            console.log(cod_edu +  " " + cod_fortaleza);
-            getDespesaProjetoAtividade({codigo_funcao: cod_edu,codigo_municipio:cod_fortaleza},2017,dados=>{
+/**
+ * Funcao que mostra os gastos de um municipio, em uma determinada funcao, em um ano.
+ * @param {string} nome_municipio Nome do municipio
+ * @param {string} nome_funcao Nome da funcao
+ * @param {Number} ano Ano
+ * @param {function} callback Callback
+ */
+function gastosMunicipioEmFuncao(nome_municipio, nome_funcao, ano, callback){
+    getFuncao({},funcoes =>{
+        var cod_func = searchInArray(nome_funcao,"nome_funcao",funcoes.rsp._content)[0].codigo_funcao;
+        
+        getMunicipios({},municipios=>{
+            var cod_municipio = searchInArray(nome_municipio,"nome_municipio",municipios.rsp._content)[0].codigo_municipio;
+            
+            var attrs = {
+                codigo_funcao: cod_func,
+                codigo_municipio: cod_municipio
+            }
+            getDespesaProjetoAtividade(attrs,ano,dados =>{
+                var lista = dados.rsp._content;
                 var total = 0;
-                for(var i = 0; i < dados.rsp._content.length; i++){
-                    total += Number(dados.rsp._content[i].valor_total_fixado_projeto_atividade);
+                for(var i in lista){
+                    var valor = lista[i]["valor_total_fixado_projeto_atividade"];
+                    total += Number(valor);
+                    
                 }
-                console.log(total + " gastos em Educacao");
+                console.log(total);
+                callback(total);
             });
         });
     });
 }
+
+function orcamentoTotalFixado(nome_municipio, ano,callback){
+    getMunicipios({nome_municipio: nome_municipio}, dados=>{
+        var cod_municipio = searchInArray(nome_municipio,"nome_municipio",dados.rsp._content)[0].codigo_municipio;
+        var url = "/server/padder.php?metodo=dados_orcamentos&exercicio_orcamento=" + ano + "00" + 
+                  "&codigo_municipio=" + cod_municipio;
+        $.getJSON(url,dados=>{
+            var valor = dados.rsp._content[0].valor_total_fixado_orcamento;
+            valor = Number(valor);
+            callback(valor);
+        });
+
+    });
+    
+}
+
+function teste(municipio,area,ano){
+    orcamentoTotalFixado(municipio,ano,orcamentoAnual =>{
+        gastosMunicipioEmFuncao(municipio,area,ano,gastoTotal=>{
+            var porcentagem = (gastoTotal/orcamentoAnual) * 100;
+            console.log(municipio + " gastou R$ " + gastoTotal + " em " + area + ".");
+            console.log(municipio + " recebeu R$ " + orcamentoAnual + " do governo em " + ano);
+            console.log(municipio + " gastou " + porcentagem + "% do orcamento em " + area + ".");
+        });
+    });
+}
+
