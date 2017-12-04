@@ -1,3 +1,11 @@
+$( document ).ready(function() {
+
+		teste("Fortaleza" , "Cultura" , 2016);
+
+});
+
+
+
 // FUNÇÃO QUE MOSTRA O NOME DE CADA MUNICÍPIO E MUDA A COR DELE
 for (var i = 0; i < cidades.length; i++) {
 
@@ -7,6 +15,7 @@ for (var i = 0; i < cidades.length; i++) {
 		var string = this.data('id');
 		string = string.replace(/_/g," ");
 		lol.innerHTML = string;
+
   });
 
 	cidades[i].mouseout(function(e){
