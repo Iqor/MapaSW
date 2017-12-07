@@ -113,14 +113,29 @@ function orcamentoTotalFixado(nome_municipio, ano,callback){
     });
     
 }
-
-function teste(municipio,area,ano){
+/**
+ * Funcao que retorna os gastos de um municipio em uma determinada funcao em um determinado ano.
+ * @param {string} municipio Nome do municipio
+ * @param {string} area Area de investimento Ex. Seguranca, educacao..
+ * @param {Number} ano Ano do gasto
+ * 
+ * @returns {Object} Objeto com os dados processados
+ */
+function getDados(municipio,area,ano){
     orcamentoTotalFixado(municipio,ano,orcamentoAnual =>{
         gastosMunicipioEmFuncao(municipio,area,ano,gastoTotal=>{
             var porcentagem = (gastoTotal/orcamentoAnual) * 100;
+            var obj = {municipio: municipio,
+                       gastoTotal: gastoTotal,
+                       orcamentoMunicipio: orcamentoAnual,
+                       porcentagem: porcentagem,
+                       area:area,
+                       ano:ano
+                      };
             console.log(municipio + " gastou R$ " + gastoTotal + " em " + area + ".");
             console.log(municipio + " recebeu R$ " + orcamentoAnual + " do governo em " + ano);
             console.log(municipio + " gastou " + porcentagem + "% do orcamento em " + area + ".");
+            return obj;
         });
     });
 }

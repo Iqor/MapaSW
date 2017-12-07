@@ -1,8 +1,3 @@
-$( document ).ready(function() {
-
-		teste("Fortaleza" , "Cultura" , 2016);
-
-});
 
 
 
