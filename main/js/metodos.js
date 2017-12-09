@@ -4,12 +4,12 @@
  * @param {function} callback Executado quando a operacao termina
  */
 function getMunicipios(atributos, callback){
-    var url = "/server/padder.php?metodo=municipios&nome_municipio=";
+    var url = "../server/padder.php?metodo=municipios&nome_municipio=";
     for(var key in atributos){
 
         url += "&" + key + "=" + atributos[key];
     }
-    url = "/server/municipios.json";
+    url = "../server/municipios.json";
     $.getJSON(url,callback);
 }
 
@@ -19,12 +19,12 @@ function getMunicipios(atributos, callback){
  * @param {function} callback Executado quando a operacao termina
  */
 function getFuncao(atributos, callback){
-    var url = "/server/padder.php?metodo=funcoes";
+    var url = "../server/padder.php?metodo=funcoes";
     for(var key in atributos){
 
         url += "&" + key + "=" + atributos[key];
     }
-    url = "/server/funcoes.json";
+    url = "../server/funcoes.json";
     $.getJSON(url,callback);
 }
 /**
@@ -34,7 +34,7 @@ function getFuncao(atributos, callback){
  * @param {function} callback 
  */
 function getDespesaProjetoAtividade(atributos,ano,callback){
-    var url = "/server/padder.php?metodo=despesa_projeto_atividade&exercicio_orcamento=" + ano + "00";
+    var url = "../server/padder.php?metodo=despesa_projeto_atividade&exercicio_orcamento=" + ano + "00";
     for(var key in atributos){
 
         url += "&" + key + "=" + atributos[key];
@@ -102,7 +102,7 @@ function gastosMunicipioEmFuncao(nome_municipio, nome_funcao, ano, callback){
 function orcamentoTotalFixado(nome_municipio, ano,callback){
     getMunicipios({nome_municipio: nome_municipio}, dados=>{
         var cod_municipio = searchInArray(nome_municipio,"nome_municipio",dados.rsp._content)[0].codigo_municipio;
-        var url = "/server/padder.php?metodo=dados_orcamentos&exercicio_orcamento=" + ano + "00" + 
+        var url = "../server/padder.php?metodo=dados_orcamentos&exercicio_orcamento=" + ano + "00" + 
                   "&codigo_municipio=" + cod_municipio;
         $.getJSON(url,dados=>{
             var valor = dados.rsp._content[0].valor_total_fixado_orcamento;
