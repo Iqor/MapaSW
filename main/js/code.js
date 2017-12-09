@@ -16,6 +16,13 @@ for (var i = 0; i < cidades.length; i++) {
 	cidades[i].mouseout(function(e){
 		this.node.style.opacity = 1;
 	});
+
+    cidades[i].click(function(e){
+        var string = this.data('id');
+		string = string.replace(/_/g," ");
+        
+        trocaGrafico(string);
+    });
 }
 
 //MÉTODO PARA INICIALIZAR O GRÁFICO DE LINHAS
