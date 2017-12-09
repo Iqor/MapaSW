@@ -134,9 +134,9 @@ function getDados(municipio,area,ano, callback){
                        ano:ano
                       };
             callback(obj);
-            //console.log(municipio + " gastou R$ " + gastoTotal + " em " + area + ".");
-            //console.log(municipio + " recebeu R$ " + orcamentoAnual + " do governo em " + ano);
-            //console.log(municipio + " gastou " + porcentagem + "% do orcamento em " + area + ".");
+            console.log(municipio + " gastou R$ " + gastoTotal + " em " + area + ".");
+            console.log(municipio + " recebeu R$ " + orcamentoAnual + " do governo em " + ano);
+            console.log(municipio + " gastou " + porcentagem + "% do orcamento em " + area + ".");
             
         });
     });
