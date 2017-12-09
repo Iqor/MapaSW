@@ -1,0 +1,11 @@
+mapasw.000webhostapp.com <-- Endereco do site
+
+
+FTP:
+files.000webhost.com 
+
+usuario:
+mapasw
+
+senha servidor:
+oByxP^1PmeQ(%Hllqv@!

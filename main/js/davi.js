@@ -118,10 +118,11 @@ function orcamentoTotalFixado(nome_municipio, ano,callback){
  * @param {string} municipio Nome do municipio
  * @param {string} area Area de investimento Ex. Seguranca, educacao..
  * @param {Number} ano Ano do gasto
+ * @param {Function} callback
  * 
  * @returns {Object} Objeto com os dados processados
  */
-function getDados(municipio,area,ano){
+function getDados(municipio,area,ano, callback){
     orcamentoTotalFixado(municipio,ano,orcamentoAnual =>{
         gastosMunicipioEmFuncao(municipio,area,ano,gastoTotal=>{
             var porcentagem = (gastoTotal/orcamentoAnual) * 100;
@@ -132,10 +133,11 @@ function getDados(municipio,area,ano){
                        area:area,
                        ano:ano
                       };
-            console.log(municipio + " gastou R$ " + gastoTotal + " em " + area + ".");
-            console.log(municipio + " recebeu R$ " + orcamentoAnual + " do governo em " + ano);
-            console.log(municipio + " gastou " + porcentagem + "% do orcamento em " + area + ".");
-            return obj;
+            callback(obj);
+            //console.log(municipio + " gastou R$ " + gastoTotal + " em " + area + ".");
+            //console.log(municipio + " recebeu R$ " + orcamentoAnual + " do governo em " + ano);
+            //console.log(municipio + " gastou " + porcentagem + "% do orcamento em " + area + ".");
+            
         });
     });
 }
