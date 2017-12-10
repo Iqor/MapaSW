@@ -76,9 +76,9 @@ chartLinha = new Chart(ctxL, {
     data:{
         labels: ["2011", "2012", "2013", "2014", "2015" ,"2016" , "2017"],
             datasets: [{
-                label: "Saúde",
+                label: "Legislativa",
                 backgroundColor: "#CC4E85",
-                data: [1,5,150,200,25,30 ,150]
+                data: [1,1,1,1,1,1 ,1]
             }]
     },
     options: {
@@ -130,9 +130,9 @@ for (var i = 0; i < cidades.length; i++) {
 
 
         if($(opcaoPizza).is(':checked')) {
-            trocaGrafico(string, valorAno , chartPizza);
+            trocaGraficoPizza(string, valorAno , chartPizza);
         }else if($(opcaoLinha).is(':checked')) {
-
+            trocaGraficoLinha(string, valorArea , chartLinha);
         }else if(!$(opcaoLinha).is(':checked') && !$(opcaoPizza).is(':checked')){
             e.preventDefault();
         }

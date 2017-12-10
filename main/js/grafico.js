@@ -1,4 +1,4 @@
-function trocaGrafico(nome_municipio, ano , chart){
+function trocaGraficoPizza(nome_municipio, ano , chart){
     for(var i =0; i < 20; i++){
         removeData(chart);
     }
@@ -17,6 +17,43 @@ function trocaGrafico(nome_municipio, ano , chart){
                         chart.options.title.text = "Orçamento de " + nome_municipio +" em " + ano;
                         chart.update();
 
+                    });
+                });
+            });
+        });
+    });
+
+}
+
+
+
+function trocaGraficoLinha(nome_municipio , area, chart){
+    for(var i =0; i < 20; i++){
+        removeData(chart);
+    }
+
+    getDados(nome_municipio,area,2011, a1 =>{
+        getDados(nome_municipio,area,2012, a2 =>{
+            getDados(nome_municipio,area,2013, a3 =>{
+                getDados(nome_municipio,area,2014, a4 =>{
+                    getDados(nome_municipio,area,2015, a5 =>{
+                        getDados(nome_municipio,area,2016, a6 =>{
+                            getDados(nome_municipio,area,2017, a7 =>{
+
+                                addData(chart,"2011",a1.gastoTotal);
+                                addData(chart,"2012",a2.gastoTotal);
+                                addData(chart,"2013",a3.gastoTotal);
+                                addData(chart,"2014",a4.gastoTotal);
+                                addData(chart,"2015",a5.gastoTotal);
+                                addData(chart,"2016",a6.gastoTotal);
+                                addData(chart,"2017",a7.gastoTotal);
+
+                                chart.options.title.text = "Orçamento de " + nome_municipio +" na área " + area;
+                                chartLinha.config.data.datasets[0].label = area;
+                                chart.update();
+
+                            });
+                        });
                     });
                 });
             });
