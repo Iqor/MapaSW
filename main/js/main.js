@@ -41,17 +41,17 @@ var ctx = $("#chart");
 var chart = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      labels: ["Outros", "Educação", "Cultura", "Saúde", "Legislativa" ,"Desporto e Lazer"],
       datasets: [{
         label: "Population (millions)",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-        data: [2478,5267,734,784,433]
+        backgroundColor: ["#17A086", "#297FB8","#8D44AD","#795548","#D25400" ,"#7E8C8D"],
+        data: [1,1,1,1,1,1]
       }]
     },
     options: {
       title: {
         display: true,
-        text: 'Predicted world population (millions) in 2050'
+        text: 'Selecione um munícipio e um ano para filtrar informações'
       }
     }
 });
