@@ -10,8 +10,8 @@ var caixaLinha;
 var opcaoPizza;
 var opcaoLinha;
 
-var chartPizza;
-var chartLinha;
+var chartPizzaCanvas;
+var chartLinhaCanvas;
 
 var ctxP = $("#chartPizza");
 var chartPizza;
@@ -24,8 +24,8 @@ $(document).ready(function(){
     caixaPizza = document.getElementById("caixaPizza");
     caixaLinha = document.getElementById("caixaLinha");
 
-    chartPizza = document.getElementById("chartPizza");
-    chartLinha = document.getElementById("chartLinha");
+    chartPizzaCanvas = document.getElementById("chartPizza");
+    chartLinhaCanvas = document.getElementById("chartLinha");
 
     opcaoPizza = document.getElementById("pizza");
     opcaoLinha = document.getElementById("linha");
@@ -97,14 +97,14 @@ function tipoGrafico(){
     if($(opcaoPizza).is(':checked')) {
         $(caixaPizza).removeClass("d-none");
         $(caixaLinha).addClass("d-none");
-        $(chartPizza).removeClass("d-none");
-        $(chartLinha).addClass("d-none");
+        $(chartPizzaCanvas).removeClass("d-none");
+        $(chartLinhaCanvas).addClass("d-none");
 
     }else if($(opcaoLinha).is(':checked')) {
         $(caixaPizza).addClass("d-none");
         $(caixaLinha).removeClass("d-none");
-        $(chartLinha).removeClass("d-none");
-        $(chartPizza).addClass("d-none");
+        $(chartLinhaCanvas).removeClass("d-none");
+        $(chartPizzaCanvas).addClass("d-none");
     }
 }
 
