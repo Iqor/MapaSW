@@ -1,4 +1,4 @@
-function trocaGrafico(nome_municipio, ano){
+function trocaGrafico(nome_municipio, ano , chart){
     for(var i =0; i < 20; i++){
         removeData(chart);
     }
@@ -25,4 +25,18 @@ function trocaGrafico(nome_municipio, ano){
 
 }
 
+function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+});
+    chart.update();
+}
 
+function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+});
+    chart.update();
+}

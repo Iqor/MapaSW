@@ -1,50 +1,66 @@
 var selectAno;
 var valorAno;
+
+var selectArea;
+var valorArea;
+
+var caixaPizza;
+var caixaLinha;
+
+var opcaoPizza;
+var opcaoLinha;
+
+var chartPizza;
+var chartLinha;
+
+
+var ctxP = $("#chartPizza");
+var chartPizza;
+
+var ctxL = $("#chartLinha");
+var chartLinha;
+
+
+
+var data = [2011,2012,2013,2014,2015,2016,2017];
+
 $(document).ready(function(){
+    caixaPizza = document.getElementById("caixaPizza");
+    caixaLinha = document.getElementById("caixaLinha");
+
+    chartPizza = document.getElementById("chartPizza");
+    chartLinha = document.getElementById("chartLinha");
+
+    opcaoPizza = document.getElementById("pizza");
+    opcaoLinha = document.getElementById("linha");
+
     selectAno = document.getElementById("ano");
+    selectArea = document.getElementById("area");
+
     valorAno = 2017;
     selectAno.addEventListener("change",()=>{
         valorAno = selectAno.value;
     });
 
+    valorArea = "Legislativa";
+    selectArea.addEventListener("change",()=>{
+        valorArea = selectArea.value;
+    });
+
+
 });
 
 
 
-// FUNÇÃO QUE MOSTRA O NOME DE CADA MUNICÍPIO E MUDA A COR DELE
-for (var i = 0; i < cidades.length; i++) {
 
-	cidades[i].mouseover(function(e){
-  	this.node.style.opacity = 0.4;
-		var lol = document.getElementById('cidade');
-		var string = this.data('id');
-		string = string.replace(/_/g," ");
-		lol.innerHTML = string;
-
-  });
-
-	cidades[i].mouseout(function(e){
-		this.node.style.opacity = 1;
-	});
-
-    cidades[i].click(function(e){
-        var string = this.data('id');
-		string = string.replace(/_/g," ");
-        
-        trocaGrafico(string,valorAno);
-    });
-}
-
-var tipo_grafico = "line";
-var ctx = $("#chart");
 //MÉTODO PARA INICIALIZAR O GRÁFICO DE LINHAS
-var chart = new Chart(ctx, {
+chartPizza = new Chart(ctxP, {
     type: 'pie',
     data: {
       labels: ["Outros", "Educação", "Cultura", "Saúde", "Legislativa" ,"Desporto e Lazer"],
       datasets: [{
         label: "Population (millions)",
-        backgroundColor: ["#17A086", "#297FB8","#8D44AD","#795548","#D25400" ,"#7E8C8D"],
+        backgroundColor: ["#7E8C8D", "#19B0CC","#1AFFA4","#FF7775","#CC4E85" ,"#FF8748"],
         data: [1,1,1,1,1,1]
       }]
     },
@@ -57,18 +73,65 @@ var chart = new Chart(ctx, {
 });
 
 
-function removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-    chart.update();
+
+
+chartLinha = new Chart(ctxL, {
+    type: 'line',
+    data: data,
+
+    options: {
+        title: {
+            display: true,
+            text: 'Selecione um munícipio e uma área para filtrar informações'
+        }
+    }
+});
+
+
+
+
+function tipoGrafico(){
+
+    if($(opcaoPizza).is(':checked')) {
+        $(caixaPizza).removeClass("d-none");
+        $(caixaLinha).addClass("d-none");
+        $(chartPizza).removeClass("d-none");
+        $(chartLinha).addClass("d-none");
+
+    }else if($(opcaoLinha).is(':checked')) {
+        $(caixaPizza).addClass("d-none");
+        $(caixaLinha).removeClass("d-none");
+        $(chartLinha).removeClass("d-none");
+        $(chartPizza).addClass("d-none");
+    }
 }
 
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
+// FUNÇÃO QUE MOSTRA O NOME DE CADA MUNICÍPIO E MUDA A COR DELE
+for (var i = 0; i < cidades.length; i++) {
+
+    cidades[i].mouseover(function(e){
+        this.node.style.opacity = 0.4;
+        var lol = document.getElementById('cidade');
+        var string = this.data('id');
+        string = string.replace(/_/g," ");
+        lol.innerHTML = string;
+
     });
-    chart.update();
+
+    cidades[i].mouseout(function(e){
+        this.node.style.opacity = 1;
+    });
+
+    cidades[i].click(function(e){
+        var string = this.data('id');
+        string = string.replace(/_/g," ");
+
+        trocaGrafico(string, valorAno , chartPizza);
+    });
 }
+
+
+
+
+
+
