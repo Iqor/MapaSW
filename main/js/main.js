@@ -1,4 +1,9 @@
 
+$(document).ready(function(){
+
+
+});
+
 
 
 // FUNÇÃO QUE MOSTRA O NOME DE CADA MUNICÍPIO E MUDA A COR DELE
@@ -25,11 +30,9 @@ for (var i = 0; i < cidades.length; i++) {
     });
 }
 
-//MÉTODO PARA INICIALIZAR O GRÁFICO DE LINHAS
 var tipo_grafico = "line";
 var ctx = $("#chart");
-
-
+//MÉTODO PARA INICIALIZAR O GRÁFICO DE LINHAS
 var chart = new Chart(ctx, {
     type: 'pie',
     data: {

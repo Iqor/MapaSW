@@ -1,4 +1,4 @@
-<?
+<?php
     $metodo = $_GET["metodo"];
     $url = "http://api.tcm.ce.gov.br/sim/1_0/".$metodo.".json?";
     $_GET["metodo"] = NULL;
