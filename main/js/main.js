@@ -1,6 +1,12 @@
-
+var selectAno;
+var valorAno;
 $(document).ready(function(){
-
+    selectAno = document.getElementById("ano");
+    valorAno = 2017;
+    selectAno.addEventListener("change",()=>{
+        alert(selectAno.value);
+        valorAno = selectAno.value;
+    });
 
 });
 
@@ -26,7 +32,7 @@ for (var i = 0; i < cidades.length; i++) {
         var string = this.data('id');
 		string = string.replace(/_/g," ");
         
-        trocaGrafico(string);
+        trocaGrafico(string,valorAno);
     });
 }
 
