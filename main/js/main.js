@@ -13,16 +13,12 @@ var opcaoLinha;
 var chartPizza;
 var chartLinha;
 
-
 var ctxP = $("#chartPizza");
 var chartPizza;
 
 var ctxL = $("#chartLinha");
 var chartLinha;
 
-
-
-var data = [2011,2012,2013,2014,2015,2016,2017];
 
 $(document).ready(function(){
     caixaPizza = document.getElementById("caixaPizza");
@@ -58,11 +54,11 @@ chartPizza = new Chart(ctxP, {
     type: 'pie',
     data: {
       labels: ["Outros", "Educação", "Cultura", "Saúde", "Legislativa" ,"Desporto e Lazer"],
-      datasets: [{
-        label: "Population (millions)",
-        backgroundColor: ["#7E8C8D", "#19B0CC","#1AFFA4","#FF7775","#CC4E85" ,"#FF8748"],
-        data: [1,1,1,1,1,1]
-      }]
+        datasets: [{
+            label: "Population (millions)",
+            backgroundColor: ["#7E8C8D", "#19B0CC","#1AFFA4","#FF7775","#CC4E85" ,"#FF8748"],
+            data: [1,1,1,1,1,1]
+        }]
     },
     options: {
       title: {
@@ -77,8 +73,14 @@ chartPizza = new Chart(ctxP, {
 
 chartLinha = new Chart(ctxL, {
     type: 'line',
-    data: data,
-
+    data:{
+        labels: ["2011", "2012", "2013", "2014", "2015" ,"2016" , "2017"],
+            datasets: [{
+                label: "Saúde",
+                backgroundColor: "#CC4E85",
+                data: [1,5,150,200,25,30 ,150]
+            }]
+    },
     options: {
         title: {
             display: true,
@@ -126,7 +128,15 @@ for (var i = 0; i < cidades.length; i++) {
         var string = this.data('id');
         string = string.replace(/_/g," ");
 
-        trocaGrafico(string, valorAno , chartPizza);
+
+        if($(opcaoPizza).is(':checked')) {
+            trocaGrafico(string, valorAno , chartPizza);
+        }else if($(opcaoLinha).is(':checked')) {
+
+        }else if(!$(opcaoLinha).is(':checked') && !$(opcaoPizza).is(':checked')){
+            e.preventDefault();
+        }
+
     });
 }
 
