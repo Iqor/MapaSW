@@ -19,6 +19,8 @@ var chartPizza;
 var ctxL = $("#chartLinha");
 var chartLinha;
 
+var carregando = $("#carregando");
+
 
 $(document).ready(function(){
     caixaPizza = document.getElementById("caixaPizza");
