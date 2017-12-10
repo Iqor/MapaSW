@@ -2,6 +2,7 @@ function trocaGrafico(nome_municipio, ano , chart){
     for(var i =0; i < 20; i++){
         removeData(chart);
     }
+    carregando.show();
     getDados(nome_municipio,"educacao",ano,edu =>{
         getDados(nome_municipio,"saude",ano, saude =>{
             getDados(nome_municipio,"cultura",ano, cultura =>{
@@ -15,6 +16,7 @@ function trocaGrafico(nome_municipio, ano , chart){
                         addData(chart,"Cultura",cultura.gastoTotal);
                         addData(chart,"Outros",edu.orcamentoMunicipio - edu.gastoTotal - saude.gastoTotal - cultura.gastoTotal - leg.gastoTotal - lazer.gastoTotal);
                         chart.options.title.text = "Orçamento de " + nome_municipio +" em " + ano;
+                        carregando.hide();
                         chart.update();
 
                     });
