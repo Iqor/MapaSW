@@ -4,7 +4,6 @@ $(document).ready(function(){
     selectAno = document.getElementById("ano");
     valorAno = 2017;
     selectAno.addEventListener("change",()=>{
-        alert(selectAno.value);
         valorAno = selectAno.value;
     });
 
