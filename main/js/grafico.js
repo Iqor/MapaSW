@@ -33,7 +33,7 @@ function trocaGraficoLinha(nome_municipio , area, chart){
     for(var i =0; i < 20; i++){
         removeData(chart);
     }
-
+    carregando.show();
     getDados(nome_municipio,area,2011, a1 =>{
         getDados(nome_municipio,area,2012, a2 =>{
             getDados(nome_municipio,area,2013, a3 =>{
@@ -52,6 +52,7 @@ function trocaGraficoLinha(nome_municipio , area, chart){
 
                                 chart.options.title.text = "Orçamento de " + nome_municipio +" na área " + area;
                                 chartLinha.config.data.datasets[0].label = area;
+                                carregando.hide();
                                 chart.update();
 
                             });
