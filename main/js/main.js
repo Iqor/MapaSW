@@ -1,17 +1,17 @@
-var selectAno;
+var valorArea;
 var valorAno;
 
-var selectArea;
-var valorArea;
+var selectArea = document.getElementById("area");
+var selectAno = document.getElementById("ano");
 
-var caixaPizza;
-var caixaLinha;
+var caixaPizza = $("#caixaPizza");
+var caixaLinha = $("#caixaLinha");
 
-var opcaoPizza;
-var opcaoLinha;
+var opcaoPizza = $("#pizza");
+var opcaoLinha = $("#linha");
 
-var chartPizzaCanvas;
-var chartLinhaCanvas;
+var chartPizzaCanvas = $("#chartPizza");
+var chartLinhaCanvas = $("#chartLinha");
 
 var ctxP = $("#chartPizza");
 var chartPizza;
@@ -23,17 +23,6 @@ var carregando = $("#carregando");
 
 
 $(document).ready(function(){
-    caixaPizza = document.getElementById("caixaPizza");
-    caixaLinha = document.getElementById("caixaLinha");
-
-    chartPizzaCanvas = document.getElementById("chartPizza");
-    chartLinhaCanvas = document.getElementById("chartLinha");
-
-    opcaoPizza = document.getElementById("pizza");
-    opcaoLinha = document.getElementById("linha");
-
-    selectAno = document.getElementById("ano");
-    selectArea = document.getElementById("area");
 
     valorAno = 2017;
     selectAno.addEventListener("change",()=>{
@@ -57,7 +46,7 @@ chartPizza = new Chart(ctxP, {
     data: {
       labels: ["Outros", "Educação", "Cultura", "Saúde", "Legislativa" ,"Desporto e Lazer"],
         datasets: [{
-            label: "Population (millions)",
+            label: "Total gasto R$:",
             backgroundColor: ["#7E8C8D", "#19B0CC","#1AFFA4","#FF7775","#CC4E85" ,"#FF8748"],
             data: [1,1,1,1,1,1]
         }]

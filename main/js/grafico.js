@@ -2,6 +2,7 @@ function trocaGraficoPizza(nome_municipio, ano , chart){
     for(var i =0; i < 20; i++){
         removeData(chart);
     }
+    chartPizzaCanvas.hide();
     carregando.show();
     getDados(nome_municipio,"educacao",ano,edu =>{
         getDados(nome_municipio,"saude",ano, saude =>{
@@ -18,6 +19,7 @@ function trocaGraficoPizza(nome_municipio, ano , chart){
                         chart.options.title.text = "Orçamento de " + nome_municipio +" em " + ano;
                         carregando.hide();
                         chart.update();
+                        chartPizzaCanvas.show();
 
                     });
                 });
@@ -33,6 +35,7 @@ function trocaGraficoLinha(nome_municipio , area, chart){
     for(var i =0; i < 20; i++){
         removeData(chart);
     }
+    chartLinhaCanvas.hide();
     carregando.show();
     getDados(nome_municipio,area,2011, a1 =>{
         getDados(nome_municipio,area,2012, a2 =>{
@@ -54,6 +57,7 @@ function trocaGraficoLinha(nome_municipio , area, chart){
                                 chartLinha.config.data.datasets[0].label = area;
                                 carregando.hide();
                                 chart.update();
+                                chartLinhaCanvas.show();
 
                             });
                         });
