@@ -45,7 +45,7 @@
 				<div class="col-6">
 
                    <h2>
-                       <i class="fas fa-question-circle" id="ajuda" data-toggle="modal" data-target="#ajudaModal"></i>
+                       <i class="fas fa-question-circle fa-spin" id="ajuda" data-toggle="modal" data-target="#ajudaModal"></i>
                         Selecione o tipo de gráfico que deseja:
                    </h2>
 
@@ -115,10 +115,11 @@
                             </select>
                         </div>
                     </div>
-                        <div class="row" style="display: none" id="carregando">
-                            <i class="fas fa-spinner"></i>
-                            <p>Carregando...</p> 
+                        <div class="row"  id="carregando">
+                            <h5>Carregando...</h5>
+                            <i class="fas fa-spinner fa-spin fa-7x"></i>
                         </div>
+
                         <div class="row">
                             <canvas class="d-none" id="chartPizza" width="600" height="400"></canvas>
                         </div>
@@ -126,7 +127,9 @@
                         <div class="row">
                             <canvas class="d-none" id="chartLinha" width="600" height="400"></canvas>
                         </div>
-                        
+
+
+
                 </div>
         </div>
 		</div>
